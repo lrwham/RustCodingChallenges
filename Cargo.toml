@@ -1,17 +1,8 @@
-[package]
-name = "rust_coding_challenges"
-version = "0.1.0"
-edition = "2021"
+[workspace]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[lib]
-name = "primes"
-path = "primes/src/lib.rs"
-crate-type = ["lib"]
-
-[[bin]]
-name = "hello_cargo"
-path = "hello_cargo/src/main.rs"
-
-[dependencies]
+members = [
+    "primes",
+    "hello_cargo",
+    "rectangles",
+    "guessing_game",
+]
