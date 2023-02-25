@@ -5,4 +5,5 @@ members = [
     "hello_cargo",
     "rectangles",
     "guessing_game",
+    "project_euler",
 ]
