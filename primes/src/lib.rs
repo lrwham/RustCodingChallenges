@@ -59,6 +59,30 @@ pub mod primes{
         true
     }
 
+    pub fn prime_vec_sieve_erastothenes(n: usize) -> Vec<usize>{
+        let mut primes: Vec<usize> = (0..=n).collect();
+
+        primes[0] = 0;
+        primes[1] = 0;
+    
+        let mut index = 2;
+
+        // check up to sqrt(n)
+        while index * index <= n {
+            if primes[index] != 0 {
+                let mut multiple = index + index;
+                while multiple <= n {
+                    primes[multiple] = 0;
+                    multiple += index;
+                }
+            }
+            index += 1;
+        }
+    
+        primes.into_iter().filter(|&x| x != 0).collect()
+        
+    }
+
     #[cfg(test)]
     mod tests {
         use super::*;
