@@ -6,5 +6,6 @@ members = [
     "rectangles",
     "guessing_game",
     "project_euler",
-    "minigrep"
+    "minigrep",
+    "interview_questions"
 ]
