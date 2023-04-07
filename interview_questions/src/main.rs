@@ -1,8 +1,6 @@
-mod first_occurence_k_times;
-mod sub_array_sum;
 mod helpers;
-mod two_sum;
 mod leetcode;
+mod other;
 
 
 
