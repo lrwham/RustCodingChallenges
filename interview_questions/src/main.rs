@@ -8,6 +8,6 @@ use crate::leetcode::length_of_longest_substring;
 
 fn main() {
     println!("Hello, world!");
-    crate::leetcode::add_two_numbers::test(9,9999999991);
+    crate::leetcode::add_two_numbers::test(9999999,9999);
 
 }

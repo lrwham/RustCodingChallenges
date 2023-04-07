@@ -16,48 +16,80 @@ pub fn test(n1: i128, n2: i128){
     println!("{:?}",n1);
     println!("{:?}",n2);
 
-    let mut node = add_two_numbers(n1,n2);
+    let node = add_two_numbers(n1,n2);
 
     println!("{:?}",node);
 
 }
 
 pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    let mut op1: i128 = 0;
-    let mut op1_digit_count: u32 = 0;
+    let mut op1: Vec<i32>  = Vec::new();
     let mut node = l1.as_ref();
 
     while let Some(n) = node {
-        op1 += n.val as i128 * i128::pow(10, op1_digit_count);
-        op1_digit_count += 1;
+        op1.push(n.val);
         node = n.next.as_ref();
     }
 
-    let mut op2: i128 = 0;
-    let mut op2_digit_count: u32 = 0;
+    let mut op2: Vec<i32>  = Vec::new();
     let mut node2 = l2.as_ref();
 
     while let Some(n) = node2 {
-        op2 += n.val as i128 * i128::pow(10, op2_digit_count);
-        op2_digit_count += 1;
+        op2.push(n.val);
         node2 = n.next.as_ref();
     }
 
+    op1.reverse();
+    op2.reverse();
 
-    let sum: i128 = op1 + op2;
+    let mut sum = add_vector_of_digits(op1,op2);
 
-    let result =  integer_to_linked_list(sum);
-
-    result
+    sum.reverse();
+    
+    vec_of_digits_to_linkedlist(sum)
     
 }
 
-pub fn integer_to_linked_list(num: i128) -> Option<Box<ListNode>>{
-    let mut digits: Vec<i32> = num_to_digits(num);
-    digits_to_linkedlist(digits)
+pub fn add_vector_of_digits(left_operand: Vec<i32>, right_operand: Vec<i32>) -> Vec<i32>{
+    let (mut smaller_operand, mut larger_operand) = match left_operand.len() < right_operand.len() {
+        true => (left_operand, right_operand),
+        false => (right_operand, left_operand),
+    };
+
+    smaller_operand.reverse();
+    larger_operand.reverse();
+
+    let mut result: Vec<i32> = Vec::new();
+    let mut carry: i32 = 0;
+
+    for (index,value) in larger_operand.iter().enumerate(){
+        let right = match smaller_operand.get(index){
+            Some(j) => *j,
+            None => 0,
+        };
+        let column_sum = value + right + carry;
+
+        if column_sum > 9 {
+            carry = 1;
+            result.push(column_sum % 10);
+        } else {
+            carry = 0;
+            result.push(column_sum);
+        }
+    }
+
+    if carry == 1 { result.push(1);}
+
+    result.reverse();
+    result
 }
 
-fn digits_to_linkedlist(digits: Vec<i32>) -> Option<Box<ListNode>> {
+pub fn integer_to_linked_list(num: i128) -> Option<Box<ListNode>>{
+    let digits: Vec<i32> = num_to_digits(num);
+    vec_of_digits_to_linkedlist(digits)
+}
+
+fn vec_of_digits_to_linkedlist(digits: Vec<i32>) -> Option<Box<ListNode>> {
     // Special case for empty input vector
     if digits.is_empty() {
         return None;
