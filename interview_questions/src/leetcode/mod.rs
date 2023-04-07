@@ -3,6 +3,7 @@ pub mod add_two_numbers;
 pub mod find_median_sorted_arrays;
 pub mod longest_palindromic_substring;
 pub mod two_sum;
+pub mod zigzag_conversion;
 
 pub use self::add_two_numbers::add_two_numbers;
 pub use self::length_of_longest_substring::length_of_longest_substring;
