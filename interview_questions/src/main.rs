@@ -4,10 +4,11 @@ mod helpers;
 mod two_sum;
 mod leetcode;
 
-use crate::leetcode::length_of_longest_substring;
+
 
 fn main() {
     println!("Hello, world!");
-    crate::leetcode::add_two_numbers::test(9999999,9999);
-
+    let a = vec![1,2,3,3,4,7,8,9];
+    let b = vec![];
+    println!("{}", crate::leetcode::find_median_sorted_arrays(a,b));
 }
