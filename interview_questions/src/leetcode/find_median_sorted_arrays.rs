@@ -5,7 +5,7 @@ pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
         let left_center_idx = (merged.len() / 2) - 1;
         let right_center_idx = merged.len() / 2;
 
-        (merged[left_center_idx] + merged[right_center_idx]) as f64 / 2.0 as f64
+        (merged[left_center_idx] + merged[right_center_idx]) as f64 / 2.0
     }else{
         merged[merged.len()/2] as f64
     }
@@ -14,9 +14,9 @@ pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
 
 fn merge(left_vec: Vec<i32>, right_vec: Vec<i32>) -> Vec<i32> {
 
-    if left_vec.len() == 0 { return right_vec; }
-    if right_vec.len() == 0 { return left_vec; }
-    
+    if left_vec.is_empty() { return right_vec; }
+    if right_vec.is_empty() { return left_vec; }
+
     let (mut left_idx, mut right_idx) = (0, 0);
     let mut sorted = vec![];
     let remaining;
@@ -33,8 +33,9 @@ fn merge(left_vec: Vec<i32>, right_vec: Vec<i32>) -> Vec<i32> {
             if right_idx == right_vec.len() {remaining = left_vec; remaining_idx = left_idx; break;}
         }
     }
-    for i in remaining_idx..remaining.len() {
-        sorted.push(remaining[i]);
+    for item in remaining.iter().skip(remaining_idx) {
+    // for i in remaining_idx..remaining.len() {
+        sorted.push(*item);
     }
 
     sorted

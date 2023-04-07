@@ -1,7 +1,8 @@
 // Given a string s, find the length of the longest
 // substring without repeating characters.
+
 pub fn length_of_longest_substring(s: String) -> i32 {
-    if s.len() == 0 { return 0 }
+    if s.is_empty() { return 0 }
     if s.len() == 1 { return 1 }
 
     let mut left_index = 0;
@@ -10,7 +11,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
     let mut longest_found = 1;
 
     while right_index < s.len(){
-        if has_repeated_char(&s[left_index..=right_index].to_string()){
+        if has_repeated_char(&s[left_index..=right_index]){
             left_index += 1;
             right_index = left_index + window_width - 1;
         } else {
@@ -59,7 +60,7 @@ pub fn fastest_length_of_longest_substring(s: String) -> i32 {
 //     largest_found as i32
 // }
 
-fn has_repeated_char(s: &String) -> bool {
+fn has_repeated_char(s: &str) -> bool {
     use std::collections::HashSet;    
     
     let mut chars_used: HashSet<char> = HashSet::new();

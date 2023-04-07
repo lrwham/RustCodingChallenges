@@ -6,7 +6,7 @@
 // Add the two numbers and return the sum as a linked list.
 // You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 
-
+#[allow(dead_code)]
 pub fn test(n1: i128, n2: i128){
     println!("{}",n1);
     println!("{}",n2);
@@ -96,12 +96,12 @@ fn vec_of_digits_to_linkedlist(digits: Vec<i32>) -> Option<Box<ListNode>> {
     }
 
     // Create the first node of the linked list
-    let mut head = Box::new(ListNode::new(digits[0] as i32));
+    let mut head = Box::new(ListNode::new(digits[0]));
     let mut tail = &mut head;
 
     // Iterate over the remaining digits and add them to the linked list
     for digit in digits.into_iter().skip(1) {
-        let node = Box::new(ListNode::new(digit as i32));
+        let node = Box::new(ListNode::new(digit));
         tail.next = Some(node);
         tail = tail.next.as_mut().unwrap();
     }
