@@ -33,5 +33,4 @@ pub fn first_occurrence(count_to_look_for: usize, slice: &[usize]) -> Option<usi
 
 #[cfg(test)]
 mod tests {
-    use super::*;
 }
