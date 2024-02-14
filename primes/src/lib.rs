@@ -1,18 +1,18 @@
 /// Calculates the nth prime by iterating over all prime numbers until the solution.
-/// 
+///
 /// # Arguments
-/// 
+///
 /// * 'n' - An integer representing the ordinal position of the prime number.
-/// 
+///
 /// # Examples
-/// 
+///
 /// ```
 /// use primes::primes::nth_prime;
 /// let result = nth_prime(4);
 /// assert_eq!(result, 7);
 /// ```
-/// 
-pub mod primes{
+///
+pub mod primes {
     pub fn nth_prime(n: u64) -> u64 {
         if n == 1 {
             return 2;
@@ -59,12 +59,12 @@ pub mod primes{
         true
     }
 
-    pub fn prime_vec_sieve_erastothenes(n: usize) -> Vec<usize>{
+    pub fn prime_vec_sieve_erastothenes(n: usize) -> Vec<usize> {
         let mut primes: Vec<usize> = (0..=n).collect();
 
         primes[0] = 0;
         primes[1] = 0;
-    
+
         let mut index = 2;
 
         // check up to sqrt(n)
@@ -78,9 +78,8 @@ pub mod primes{
             }
             index += 1;
         }
-    
+
         primes.into_iter().filter(|&x| x != 0).collect()
-        
     }
 
     #[cfg(test)]

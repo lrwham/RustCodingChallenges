@@ -7,7 +7,7 @@
 // By considering the terms in the Fibonacci sequence whose
 // values do not exceed four million, find the sum of the even-valued terms.
 
-pub mod euler002{
+pub mod euler002 {
 
     pub fn solution() -> i32 {
         let limit = 4000000;
@@ -18,7 +18,7 @@ pub mod euler002{
         let mut current_fib = 1;
 
         while current_fib < limit {
-            if is_even(current_fib){
+            if is_even(current_fib) {
                 sum += current_fib;
             }
 
@@ -26,7 +26,7 @@ pub mod euler002{
             last_fib = current_fib;
             current_fib += temp;
         }
-        
+
         sum
     }
 
@@ -34,11 +34,11 @@ pub mod euler002{
         number % 2 == 0
     }
 
-    fn next_fibonacci(n_minus_one: i32,n_minus_two: i32) -> i32{
+    #[allow(dead_code)]
+    fn next_fibonacci(n_minus_one: i32, n_minus_two: i32) -> i32 {
         n_minus_one + n_minus_two
     }
 
-    
     #[cfg(test)]
     mod tests {
         use super::*;
@@ -54,14 +54,14 @@ pub mod euler002{
         }
 
         #[test]
-        fn test_next_fibonacci(){
-            assert_eq!(2,next_fibonacci(1,1));
-            assert_eq!(8,next_fibonacci(3,5));
+        fn test_next_fibonacci() {
+            assert_eq!(2, next_fibonacci(1, 1));
+            assert_eq!(8, next_fibonacci(3, 5));
         }
 
         #[test]
-        fn test_solution(){
-            assert_eq!(4613732,solution());
+        fn test_solution() {
+            assert_eq!(4613732, solution());
         }
     }
 }

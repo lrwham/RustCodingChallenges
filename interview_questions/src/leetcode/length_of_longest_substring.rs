@@ -1,17 +1,22 @@
+#[allow(dead_code)]
 // Given a string s, find the length of the longest
 // substring without repeating characters.
 
 pub fn length_of_longest_substring(s: String) -> i32 {
-    if s.is_empty() { return 0 }
-    if s.len() == 1 { return 1 }
+    if s.is_empty() {
+        return 0;
+    }
+    if s.len() == 1 {
+        return 1;
+    }
 
     let mut left_index = 0;
     let mut window_width = 2;
     let mut right_index = left_index + window_width - 1;
     let mut longest_found = 1;
 
-    while right_index < s.len(){
-        if has_repeated_char(&s[left_index..=right_index]){
+    while right_index < s.len() {
+        if has_repeated_char(&s[left_index..=right_index]) {
             left_index += 1;
             right_index = left_index + window_width - 1;
         } else {
@@ -23,10 +28,10 @@ pub fn length_of_longest_substring(s: String) -> i32 {
     }
 
     longest_found as i32
-
 }
 
 use std::collections::HashMap;
+#[allow(dead_code)]
 pub fn fastest_length_of_longest_substring(s: String) -> i32 {
     let mut length = 0;
     let mut left = 0;
@@ -61,13 +66,16 @@ pub fn fastest_length_of_longest_substring(s: String) -> i32 {
 // }
 
 fn has_repeated_char(s: &str) -> bool {
-    use std::collections::HashSet;    
-    
+    use std::collections::HashSet;
+
     let mut chars_used: HashSet<char> = HashSet::new();
 
-    for c in s.chars(){
-            if chars_used.insert(c) { continue; }
-            else { return true; }
+    for c in s.chars() {
+        if chars_used.insert(c) {
+            continue;
+        } else {
+            return true;
+        }
     }
 
     false

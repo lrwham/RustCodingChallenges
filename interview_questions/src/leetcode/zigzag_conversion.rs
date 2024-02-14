@@ -4,7 +4,9 @@ pub fn convert(s: String, num_rows: i32) -> String {
     // This algorithm is in the 50th percentile for both time and memory
     // adding this comment apparently makes it worse on Leetcode!
 
-    if num_rows == 1 { return s; }
+    if num_rows == 1 {
+        return s;
+    }
 
     let mut descending = true;
 
@@ -16,7 +18,7 @@ pub fn convert(s: String, num_rows: i32) -> String {
 
     let mut row = 0;
 
-    while let Some(c) = chars_iter.next(){
+    while let Some(c) = chars_iter.next() {
         strings[row].push(c);
 
         if descending {
@@ -26,10 +28,10 @@ pub fn convert(s: String, num_rows: i32) -> String {
                 row -= 1;
                 descending = false;
             }
-        } else {            
+        } else {
             if row > 0 {
                 row -= 1;
-            } else { 
+            } else {
                 row += 1;
                 descending = true;
             }
@@ -52,7 +54,9 @@ pub fn convert_old(s: String, num_rows: i32) -> String {
     //
     // 10th percentile for time, 5th percentile for memory
     // yikes
-    if num_rows == 1 { return s; }
+    if num_rows == 1 {
+        return s;
+    }
 
     let mut descending = true;
 
@@ -67,8 +71,8 @@ pub fn convert_old(s: String, num_rows: i32) -> String {
     let mut column = 0;
     let mut row = 0;
 
-    while let Some(c) = chars_iter.next(){
-        arr[column + row*width] = c;
+    while let Some(c) = chars_iter.next() {
+        arr[column + row * width] = c;
 
         if descending {
             if row < num_rows - 1 {
@@ -78,11 +82,11 @@ pub fn convert_old(s: String, num_rows: i32) -> String {
                 column += 1;
                 descending = false;
             }
-        } else {            
+        } else {
             if row > 0 {
                 row -= 1;
                 column += 1;
-            } else { 
+            } else {
                 row += 1;
                 descending = true;
             }
@@ -102,15 +106,18 @@ mod tests {
     use super::*;
     #[test]
     fn test_convert_old() {
-        assert_eq!(convert_old("PAYPALISHIRING".to_string(),3), "PAHNAPLSIIGYIR");
-        assert_eq!(convert_old("PAYPALISHIRING".to_string(),4), "PINALSIGYAHRPI");
-
+        assert_eq!(
+            convert_old("PAYPALISHIRING".to_string(), 3),
+            "PAHNAPLSIIGYIR"
+        );
+        assert_eq!(
+            convert_old("PAYPALISHIRING".to_string(), 4),
+            "PINALSIGYAHRPI"
+        );
     }
     #[test]
     fn test_convert() {
-        assert_eq!(convert("PAYPALISHIRING".to_string(),3), "PAHNAPLSIIGYIR");
-        assert_eq!(convert("PAYPALISHIRING".to_string(),4), "PINALSIGYAHRPI");
-
+        assert_eq!(convert("PAYPALISHIRING".to_string(), 3), "PAHNAPLSIIGYIR");
+        assert_eq!(convert("PAYPALISHIRING".to_string(), 4), "PINALSIGYAHRPI");
     }
-
 }

@@ -16,5 +16,4 @@ fn main() {
     println!("{}", euler004::euler004::solution());
     println!("Euler 005");
     println!("{}", euler005::euler005::solution());
-
 }

@@ -5,13 +5,13 @@ use crate::helpers::random_array_intergers;
 use std::collections::HashMap;
 
 #[allow(dead_code)]
-pub fn solution(){
+pub fn solution() {
     let z = random_array_intergers(5);
 
     for count in 1..=5 {
-        match first_occurrence(count, &z){
+        match first_occurrence(count, &z) {
             Some(x) => println!("{} was the first key to occur {} times.", x, count),
-            None => println!("No key occured {} time/s", count)
+            None => println!("No key occured {} time/s", count),
         }
     }
 }
@@ -32,7 +32,6 @@ pub fn first_occurrence(count_to_look_for: usize, slice: &[usize]) -> Option<usi
 }
 
 #[cfg(test)]
-mod tests{
+mod tests {
     use super::*;
-
 }

@@ -7,11 +7,11 @@ pub mod euler004 {
     pub fn solution() -> usize {
         let mut max: usize = 0;
 
-        for i in 100..=999{
-            for j in 100..=999{
+        for i in 100..=999 {
+            for j in 100..=999 {
                 let test = i * j;
 
-                if test > max && is_palindrome(test){
+                if test > max && is_palindrome(test) {
                     max = test;
                 }
             }
@@ -20,15 +20,14 @@ pub mod euler004 {
         max
     }
 
-    fn is_palindrome(number: usize) -> bool{
+    fn is_palindrome(number: usize) -> bool {
         let word_vec: Vec<char> = number.to_string().chars().collect();
 
-
-        for (index, value) in word_vec.iter().enumerate(){
-            if *value == word_vec[word_vec.len() - 1 - index]{
+        for (index, value) in word_vec.iter().enumerate() {
+            if *value == word_vec[word_vec.len() - 1 - index] {
                 continue;
             } else {
-                return false
+                return false;
             }
         }
 
@@ -40,18 +39,17 @@ pub mod euler004 {
         use super::*;
 
         #[test]
-        fn test_is_palindrome(){
+        fn test_is_palindrome() {
             assert!(is_palindrome(121));
             assert!(is_palindrome(12321));
             assert!(is_palindrome(1221221));
             assert!(!is_palindrome(123));
             assert!(!is_palindrome(12345321));
-
         }
 
         #[test]
-        fn test_solution(){
-            assert_eq!(906609,solution());
+        fn test_solution() {
+            assert_eq!(906609, solution());
         }
     }
 }
