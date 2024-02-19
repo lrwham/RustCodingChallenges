@@ -14,6 +14,8 @@ impl Solution{
                     Some(&last) => {
                         if last == '(' && c == ')' || last == '[' && c == ']' || last == '{' && c == '}' {
                             stack.pop();
+                        } else if last == '(' || last == '[' || last == '{' {
+                            return false;
                         } else {
                             stack.push(c);
                         }
