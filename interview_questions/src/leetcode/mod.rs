@@ -5,3 +5,4 @@ pub mod longest_palindromic_substring;
 pub mod two_sum;
 pub mod zigzag_conversion;
 mod valid_parentheses;
+mod three_sum;
