@@ -21,6 +21,8 @@ impl Solution {
 
                 if total == 0 {
                     let vec = vec![nums[i], nums[left], nums[right]];
+                    // as explained by ChatGPT this &mut vec![vec] mess is meant to allow
+                    // the result to be modified in place
                     result.append(&mut vec![vec]);
                     while left < right && nums[left] == nums[left + 1] {
                         left += 1;
