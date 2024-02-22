@@ -6,3 +6,4 @@ pub mod two_sum;
 pub mod zigzag_conversion;
 mod valid_parentheses;
 mod three_sum;
+mod integer_to_roman;
