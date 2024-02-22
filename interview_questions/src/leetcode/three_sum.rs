@@ -2,6 +2,7 @@ struct Solution;
 
 impl Solution {
     // two pointer solution suggested by chatGPT
+    #[allow(dead_code)]
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut nums = nums;
         nums.sort();
