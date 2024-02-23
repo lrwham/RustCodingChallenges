@@ -1,5 +1,5 @@
 [package]
-name = "max_subarry"
+name = "max_subarray"
 version = "0.1.0"
 edition = "2021"
 
