@@ -34,6 +34,33 @@ fn max_difference_remember_min(nums: &Vec<i32>) -> i32 {
     max_diff
 }
 
+fn max_difference_recursive(nums: &[i32]) -> i32 {
+    if nums.len() <= 1 {
+        return 0;
+    }
+    if nums.len() == 2 {
+        return nums[1] - nums[0];
+    }
+
+    let mid = nums.len() / 2;
+
+    let left_max_diff = max_difference_recursive(&nums[..mid]);
+    let right_max_diff = max_difference_recursive(&nums[mid..]);
+
+    let left_min = if let Some(&min) = nums[..mid].iter().min() { min } else { i32::MAX };
+    let right_max = if let Some(&max) = nums[mid..].iter().max() { max } else { i32::MIN };
+
+    let cross_max_diff = right_max - left_min;
+
+    if left_max_diff > right_max_diff && left_max_diff > cross_max_diff {
+        left_max_diff
+    } else if right_max_diff > cross_max_diff {
+        right_max_diff
+    } else {
+        cross_max_diff
+    }
+}
+
 fn main() {
     let nums = vec!{1,2,0,-9,3};
     let expected = 12;
@@ -45,6 +72,35 @@ fn main() {
 mod tests {
     use super::*;
     use test::Bencher;
+
+    #[test]
+    fn test_max_difference_recursive() {
+        let nums = vec!{1,20,7,3,5,6,8,9};
+        let expected = 19;
+        let calculated = max_difference_recursive(&nums);
+        assert_eq!(expected, calculated);
+
+        let nums = vec!{1,2,0,-9,3};
+        let expected = 12;
+        let calculated = max_difference_recursive(&nums);
+        assert_eq!(expected, calculated);
+
+        let nums = vec!{1,2,0,-9,3,4};
+        let expected = 13;
+        let calculated = max_difference_recursive(&nums);
+        assert_eq!(expected, calculated);
+
+        let nums = vec!{0,1,2,3,4,5};
+        let expected = 5;
+        let calculated = max_difference_recursive(&nums);
+        assert_eq!(expected, calculated);
+
+        let nums = vec!{5,4,3,2,1,0};
+        let expected = -1;
+        let calculated = max_difference_recursive(&nums);
+        assert_eq!(expected, calculated);
+    }
+
 
     #[test]
     fn test_max_difference_expo() {
@@ -125,5 +181,3 @@ mod tests {
 
     }
 }
-
-
